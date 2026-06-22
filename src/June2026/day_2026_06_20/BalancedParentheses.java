@@ -1,4 +1,4 @@
-package june2026.day_2026_06_22;
+package June2026.day_2026_06_20;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
