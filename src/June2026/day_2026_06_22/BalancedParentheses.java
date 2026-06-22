@@ -30,7 +30,6 @@ public class BalancedParentheses {
                 }
             }
         }
-
         // Add missing closing brackets
         while (openCount > 0) {
             result.append(')');
