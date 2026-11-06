@@ -1,5 +1,8 @@
 package march2026.day_2026_03_07;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * Given an array of numbers and a number k, determine if there are three entries in the array which add up to the specified number k.
  * For example, given [20, 303, 3, 4, 25] and k = 49, return true as 20 + 4 + 25 = 49
@@ -16,6 +19,10 @@ If all possibilities are checked, return false.
 import java.util.Arrays;
 
 public class ThreeNumberAddition {
+    private static final Logger LOGGER = Logger.getLogger(ThreeNumberAddition.class.getName());
+
+    private ThreeNumberAddition() {
+    }
 
     public static boolean hasThreeSum(int[] arr, int k) {
         Arrays.sort(arr);
@@ -29,9 +36,9 @@ public class ThreeNumberAddition {
                 if(sum == k){
                     return true;
                 }else if(sum > k){
-                    left++;
-                }else if(sum < k){
                     right--;
+                }else {
+                    left++;
                 }
             }
         }
@@ -39,11 +46,12 @@ public class ThreeNumberAddition {
     }
 
     public static void main(String[] args) {
+        if (LOGGER.isLoggable(Level.INFO)) {
+            int[] arr = {20, 303, 3, 4, 25};
+            int k = 49;
 
-        int[] arr = {20, 303, 3, 4, 25};
-        int k = 49;
-
-        System.out.println(hasThreeSum(arr, k));
+            LOGGER.log(Level.INFO, "{0}", hasThreeSum(arr, k));
+        }
     }
 }
 

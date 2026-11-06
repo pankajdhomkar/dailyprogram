@@ -1,4 +1,4 @@
-package June2026.day_2026_06_20;
+package june2026.day_2026_06_20;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -10,6 +10,9 @@ For example, given "(()", you could return "(())". Given "))()(", you could retu
 */
 public class BalancedParentheses {
     private static final Logger LOGGER = Logger.getLogger(BalancedParentheses.class.getName());
+
+    private BalancedParentheses() {
+    }
 
     //Using basic java code
     public static String balance(String s) {

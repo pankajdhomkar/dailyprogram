@@ -13,8 +13,14 @@ Each tile can be visited only once by any word.
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MaxPackedWords {
+    private static final Logger LOGGER = Logger.getLogger(MaxPackedWords.class.getName());
+
+    private MaxPackedWords() {
+    }
     static class WordPlacement {
         String word;
         List<int[]> cells;
@@ -145,21 +151,22 @@ public class MaxPackedWords {
     }
 
     public static void main(String[] args) {
+        if (LOGGER.isLoggable(Level.INFO)) {
+            char[][] board = {
+                    {'C', 'A', 'T'},
+                    {'D', 'O', 'G'},
+                    {'R', 'A', 'P'}
+            };
 
-        char[][] board = {
-                {'C', 'A', 'T'},
-                {'D', 'O', 'G'},
-                {'R', 'A', 'P'}
-        };
+            String[] dictionary = {
+                    "CAT",
+                    "DOG",
+                    "CAP",
+                    "CAR"
+            };
 
-        String[] dictionary = {
-                "CAT",
-                "DOG",
-                "CAP",
-                "CAR"
-        };
-
-        System.out.println(maxPackedWords(board, dictionary));
+            LOGGER.log(Level.INFO, "{0}", maxPackedWords(board, dictionary));
+        }
     }
 
 }

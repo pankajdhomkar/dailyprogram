@@ -2,7 +2,6 @@ package july2026.day_2026_07_22;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /*
 * Good morning! Here's your coding interview problem for today.
 This problem was asked by Oracle.

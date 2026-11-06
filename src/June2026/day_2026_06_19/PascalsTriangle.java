@@ -1,7 +1,9 @@
-package June2026.day_2026_06_19;
+package june2026.day_2026_06_19;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
 * Pascal's triangle is a triangular array of integers constructed with the following formula:
@@ -21,6 +23,10 @@ Bonus: Can you do this using only O(k) space?
 * Using Binomial Coefficient
  */
 public class PascalsTriangle {
+    private static final Logger LOGGER = Logger.getLogger(PascalsTriangle.class.getName());
+
+    private PascalsTriangle() {
+    }
 
     public static List<Integer> getKthRow(int k) {
 
@@ -39,6 +45,8 @@ public class PascalsTriangle {
     }
 
     public static void main(String[] args) {
-        System.out.println(getKthRow(5));
+        if (LOGGER.isLoggable(Level.INFO)) {
+            LOGGER.log(Level.INFO, "{0}", getKthRow(5));
+        }
     }
 }

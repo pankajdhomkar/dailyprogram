@@ -1,4 +1,7 @@
-package June2026.day_2026_06_21;
+package june2026.day_2026_06_21;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
 Diffrent Approch
@@ -27,6 +30,7 @@ We can consider a sentence valid if it conforms to the following rules:
 * */
 
 public class CharacterStreamValidator {
+    private static final Logger LOGGER = Logger.getLogger(CharacterStreamValidator.class.getName());
     private final StringBuilder buffer = new StringBuilder();
 
     public void accept(char ch) {
@@ -38,7 +42,7 @@ public class CharacterStreamValidator {
             String sentence = buffer.toString();
 
             if (SentenceValidator.isValid(sentence)) {
-                System.out.println("VALID: " + sentence);
+                LOGGER.log(Level.INFO, "VALID: {0}", sentence);
             }
 
             buffer.setLength(0);
@@ -48,26 +52,35 @@ public class CharacterStreamValidator {
     static class SentenceValidator {
 
         static boolean isValid(String sentence) {
-
-            if (sentence.length() < 2) {
-                return false;
+            if (sentence == null || sentence.isEmpty()) {
+               return false;
             }
 
-            if (!Character.isUpperCase(sentence.charAt(0))) {
-                return false;
+            int len = sentence.length();
+            char first = sentence.charAt(0);
+            char last = sentence.charAt(len - 1);
+
+            if (len < 3 || !Character.isUpperCase(first) || ".?!‽".indexOf(last) == -1) {
+               return false;
             }
 
-            if (sentence.contains("  ")) {
-                return false;
+            if (sentence.contains("  ") || sentence.startsWith(" ") || sentence.endsWith(" ")) {
+               return false;
             }
 
-            char last = sentence.charAt(sentence.length() - 1);
-
-            if (".?!".indexOf(last) == -1) {
-                return false;
+            if (!Character.isLowerCase(sentence.charAt(1)) && sentence.charAt(1) != ' ') {
+               return false;
             }
 
-            return true;
+            for (int i = 1; i < len - 1; i++) {
+               char ch = sentence.charAt(i);
+               if (!Character.isLowerCase(ch) && ch != ' ' && ch != ',' && ch != ';' && ch != ':') {
+                   return false;
+               }
+            }
+
+            char beforeTerminal = sentence.charAt(len - 2);
+            return Character.isLowerCase(beforeTerminal);
         }
     }
 
